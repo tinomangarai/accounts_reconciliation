@@ -1,76 +1,41 @@
-
 import streamlit as st
 import pandas as pd
-import os
-import joblib
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from fuzzywuzzy import fuzz
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Constants
-MODEL_PATH = "saved_model.pkl"
 
 # Title
-st.title("🇿🇼 Enhanced AI Bank Reconciliation & Classification System")
+st.title("🇿🇼 AI Bank Reconciliation & Classification System")
 
-# Sidebar for file uploads and settings
-st.sidebar.header("📂 Upload Files")
+# Upload section
+st.sidebar.header("📂 Upload CSV Files")
 training_file = st.sidebar.file_uploader("Upload training_data.csv", type="csv")
 bank_file = st.sidebar.file_uploader("Upload bank_statement.csv", type="csv")
 
-threshold = st.sidebar.slider("🔧 Fuzzy Match Threshold", min_value=70, max_value=100, value=85, step=1)
+# Proceed only if both files are uploaded
+if training_file and bank_file:
+    df_train = pd.read_csv(training_file)
+    df_bank = pd.read_csv(bank_file)
 
-# Load or train model
-model = None
+    st.subheader("Preview: Internal Training Data")
+    st.dataframe(df_train.head())
 
-def train_model(df_train):
+    st.subheader("Preview: Bank Statement")
+    st.dataframe(df_bank.head())
+
+    # Train model
     X = df_train['Description']
     y = df_train['Label']
+
     model = Pipeline([
         ("tfidf", TfidfVectorizer()),
         ("clf", RandomForestClassifier(n_estimators=100, random_state=42))
     ])
     model.fit(X, y)
-    joblib.dump(model, MODEL_PATH)
-    return model
 
-def load_model():
-    if os.path.exists(MODEL_PATH):
-        return joblib.load(MODEL_PATH)
-    return None
-
-# Main logic
-if training_file and bank_file:
-    df_train = pd.read_csv(training_file)
-    df_bank = pd.read_csv(bank_file)
-
-    st.subheader("📘 Training Data Preview")
-    st.dataframe(df_train.head())
-
-    st.subheader("🏦 Bank Statement Preview")
-    st.dataframe(df_bank.head())
-
-    # Check for retraining
-    if st.sidebar.button("🔁 Retrain Model"):
-        model = train_model(df_train)
-        st.sidebar.success("✅ Model retrained and saved.")
-    else:
-        model = load_model()
-        if model is None:
-            model = train_model(df_train)
-            st.sidebar.warning("⚠️ No saved model found, trained a new one.")
-
-    # Predict and visualize
+    # Predict bank labels
     df_bank['Predicted_Label'] = model.predict(df_bank['Description'])
-
-    st.subheader("📊 Predicted Transaction Categories")
-    fig, ax = plt.subplots()
-    sns.countplot(data=df_bank, x="Predicted_Label", palette="Set2", ax=ax)
-    plt.xticks(rotation=45)
-    st.pyplot(fig)
 
     # Reconciliation
     reconciled = []
@@ -86,7 +51,7 @@ if training_file and bank_file:
             if score > best_score:
                 best_score = score
                 best_match = train_row
-        if best_score >= threshold:
+        if best_score >= 85:
             reconciled.append({
                 "Bank_Date": bank_row['Date'],
                 "Bank_Description": bank_row['Description'],
@@ -100,16 +65,36 @@ if training_file and bank_file:
         else:
             unmatched.append(bank_row)
 
-    # Show reconciliation
     df_rec = pd.DataFrame(reconciled)
     df_unmatched = pd.DataFrame(unmatched)
 
-    st.subheader("✅ Reconciled Transactions")
-    st.dataframe(df_rec)
-    st.download_button("📥 Download Reconciled", df_rec.to_csv(index=False), "reconciled.csv")
+    # --- Accuracy Calculation ---
+    if not df_rec.empty:
+        label_accuracy = (df_rec['Predicted_Label'] == df_rec['Internal_Label']).mean() * 100
+        desc_accuracy = (df_rec['Bank_Description'] == df_rec['Matched_Internal_Desc']).mean() * 100
+        amount_accuracy = (abs(df_rec['Bank_Amount'] - df_rec['Internal_Amount']) <= 5).mean() * 100
+        overall_accuracy = (
+            (df_rec['Predicted_Label'] == df_rec['Internal_Label']) &
+            (df_rec['Bank_Description'] == df_rec['Matched_Internal_Desc']) &
+            (abs(df_rec['Bank_Amount'] - df_rec['Internal_Amount']) <= 5)
+        ).mean() * 100
 
-    st.subheader("❌ Unmatched Transactions")
+        st.subheader("📊 Reconciliation Accuracy")
+        st.metric("✅ Label Accuracy", f"{label_accuracy:.2f}%")
+        st.metric("✅ Description Accuracy", f"{desc_accuracy:.2f}%")
+        st.metric("✅ Amount Match Accuracy (±5)", f"{amount_accuracy:.2f}%")
+        st.metric("✅ Overall Reconciliation Accuracy", f"{overall_accuracy:.2f}%")
+    else:
+        st.warning("No reconciled transactions found. Cannot compute accuracy.")
+
+    # Show results
+    st.subheader("🔁 Reconciled Transactions")
+    st.dataframe(df_rec)
+    st.download_button("📥 Download Reconciled Transactions", df_rec.to_csv(index=False), file_name="reconciled_transactions.csv")
+
+    st.subheader("❌ Unmatched Bank Transactions")
     st.dataframe(df_unmatched)
-    st.download_button("📥 Download Unmatched", df_unmatched.to_csv(index=False), "unmatched.csv")
+    st.download_button("📥 Download Unmatched Transactions", df_unmatched.to_csv(index=False), file_name="unmatched_transactions.csv")
+
 else:
-    st.info("👈 Please upload both training and bank files to continue.")
+    st.info("👈 Upload both training and bank CSV files to begin.")
