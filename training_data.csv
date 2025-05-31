@@ -1,0 +1,101 @@
+Date,Description,Amount,Label
+2025-01-01,Transfer to USD wallet,-460.53,Transfer
+2025-01-01,USD cash sale,292.36,Income
+2025-01-01,Purchase of goods from supplier,-245.68,Expense
+2025-01-01,Moved funds to Ecocash,-129.44,Transfer
+2025-01-02,Purchase of goods from supplier,-106.02,Expense
+2025-01-02,Salary for workers,-372.55,Expense
+2025-01-02,PAYE remittance,-322.29,Tax
+2025-01-02,Internal transfer to FCA,-313.14,Transfer
+2025-01-02,ZIMRA income tax,-187.35,Tax
+2025-01-03,Internal transfer to FCA,-68.32,Transfer
+2025-01-03,Transfer from POS to main account,-462.64,Transfer
+2025-01-03,Transfer to USD wallet,-437.83,Transfer
+2025-01-03,Bank deposit from client,191.63,Income
+2025-01-03,Transfer from POS to main account,-126.92,Transfer
+2025-01-03,USD cash sale,198.09,Income
+2025-01-04,Bank deposit from client,497.32,Income
+2025-01-04,Transfer from POS to main account,-176.14,Transfer
+2025-01-04,Transfer to savings,-294.4,Transfer
+2025-01-05,Purchase of goods from supplier,-225.87,Expense
+2025-01-05,Internet bundle Econet,-222.08,Expense
+2025-01-06,Ecocash sale to customer,186.51,Income
+2025-01-07,Internet bundle Econet,-308.78,Expense
+2025-01-07,Salary for workers,-100.26,Expense
+2025-01-07,Transfer to USD wallet,-276.45,Transfer
+2025-01-08,Internal transfer to FCA,-51.26,Transfer
+2025-01-08,Transfer to USD wallet,-56.48,Transfer
+2025-01-08,Swipe sale POS,45.95,Income
+2025-01-08,Cash received from Mukuru,229.38,Income
+2025-01-09,Internal transfer to FCA,-313.03,Transfer
+2025-01-09,ZIMRA income tax,-331.1,Tax
+2025-01-09,ZIMRA income tax,-188.66,Tax
+2025-01-10,Presumptive tax payment,-343.85,Tax
+2025-01-10,Fuel purchase Puma,-36.16,Expense
+2025-01-10,Payment to ZESA,-379.28,Expense
+2025-01-11,NSSA monthly deduction,-60.42,Tax
+2025-01-11,ZIMRA VAT remittance,-436.71,Tax
+2025-01-12,Internal transfer to FCA,-102.97,Transfer
+2025-01-13,USD cash sale,248.29,Income
+2025-01-13,NSSA monthly deduction,-46.9,Tax
+2025-01-13,Transfer from POS to main account,-257.48,Transfer
+2025-01-13,ZIMRA VAT remittance,-201.84,Tax
+2025-01-15,Office supplies,-282.12,Expense
+2025-01-15,Cash received from Mukuru,264.66,Income
+2025-01-16,Bank deposit from client,453.38,Income
+2025-01-16,Bank deposit from client,415.71,Income
+2025-01-17,ZIMRA income tax,-447.07,Tax
+2025-01-17,Internal transfer to FCA,-372.51,Transfer
+2025-01-17,Office supplies,-171.72,Expense
+2025-01-17,Presumptive tax payment,-32.03,Tax
+2025-01-18,ZIMRA VAT remittance,-366.11,Tax
+2025-01-18,Salary for workers,-22.36,Expense
+2025-01-18,ZIMRA VAT remittance,-491.6,Tax
+2025-01-18,Moved funds to Ecocash,-282.23,Transfer
+2025-01-19,Cash received from Mukuru,309.22,Income
+2025-01-19,USD cash sale,23.96,Income
+2025-01-19,Fuel purchase Puma,-494.89,Expense
+2025-01-19,Transfer from POS to main account,-152.36,Transfer
+2025-01-19,Internal transfer to FCA,-316.97,Transfer
+2025-01-20,Cash received from Mukuru,250.72,Income
+2025-01-20,Purchase of goods from supplier,-407.1,Expense
+2025-01-21,ZIMRA income tax,-356.74,Tax
+2025-01-21,Moved funds to Ecocash,-82.91,Transfer
+2025-01-21,Econet airtime sales,379.59,Income
+2025-01-22,PAYE remittance,-172.81,Tax
+2025-01-23,Salary for workers,-218.92,Expense
+2025-01-23,Payment to ZESA,-199.4,Expense
+2025-01-23,ZUPCO ticket refund,-151.86,Expense
+2025-01-23,Transfer to savings,-298.52,Transfer
+2025-01-23,Transfer to savings,-273.22,Transfer
+2025-01-24,Econet airtime sales,256.1,Income
+2025-01-24,ZIMRA VAT remittance,-498.86,Tax
+2025-01-24,NSSA monthly deduction,-261.34,Tax
+2025-01-24,Salary for workers,-299.22,Expense
+2025-01-24,ZUPCO ticket refund,-362.38,Expense
+2025-01-25,Cash received from Mukuru,204.17,Income
+2025-01-25,Swipe sale POS,433.01,Income
+2025-01-26,Fuel purchase Puma,-368.84,Expense
+2025-01-26,Payment from customer via ZIPIT,50.48,Income
+2025-01-26,ZIMRA income tax,-319.43,Tax
+2025-01-26,Fuel purchase Puma,-98.41,Expense
+2025-01-27,Internal transfer to FCA,-161.88,Transfer
+2025-01-28,Bank deposit from client,324.79,Income
+2025-01-28,Ecocash sale to customer,298.17,Income
+2025-01-28,Ecocash sale to customer,367.41,Income
+2025-01-28,Bank deposit from client,168.53,Income
+2025-01-29,NSSA monthly deduction,-209.66,Tax
+2025-01-29,Presumptive tax payment,-236.56,Tax
+2025-01-29,ZIMRA VAT remittance,-94.4,Tax
+2025-01-29,ZIMRA income tax,-58.81,Tax
+2025-01-29,Salary for workers,-74.49,Expense
+2025-01-29,Transfer from POS to main account,-396.93,Transfer
+2025-01-30,Swipe sale POS,138.83,Income
+2025-01-30,PAYE remittance,-298.58,Tax
+2025-01-30,Transfer to savings,-98.93,Transfer
+2025-01-30,NSSA monthly deduction,-485.38,Tax
+2025-01-31,ZIMRA income tax,-295.03,Tax
+2025-01-31,Payment to ZESA,-387.99,Expense
+2025-01-31,Internet bundle Econet,-169.18,Expense
+2025-01-31,Ecocash sale to customer,308.84,Income
+2025-01-31,Fuel purchase Puma,-200.97,Expense
