@@ -3,3 +3,6 @@ pandas
 scikit-learn
 fuzzywuzzy
 python-Levenshtein
+matplotlib
+seaborn
+joblib
